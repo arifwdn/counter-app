@@ -10,7 +10,7 @@ function App() {
 
   const handleEdit = () => {
     let angka = parseInt(prompt("masukkan angka!"));
-    console.log(` Nilai Angka : ${angka}, tipe data angka : ${typeof angka}`);
+    // console.log(` Nilai Angka : ${angka}, tipe data angka : ${typeof angka}`);
     if (!isNaN(angka)) setCount(angka);
   };
 
@@ -38,7 +38,7 @@ function App() {
             Edit
           </button>
           <button
-            className="bg-green-500 p-3 w-full h-[600px] font-bold text-white rounded-md m-1 border-b-green-300 outline-none border-b-4 active:border-b-0"
+            className="bg-green-500 p-3 w-full h-[400px] font-bold text-white rounded-md m-1 border-b-green-300 outline-none border-b-4 active:border-b-0"
             onClick={handleCount}
           >
             Count
