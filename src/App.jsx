@@ -2,9 +2,10 @@ import { useState, useRef } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const STORAGE_KEY = "counter_app";
   const handleCount = () => {
     setCount(parseInt(count) + 1);
+    saveToStorage();
   };
   const formCount = useRef();
 
@@ -12,6 +13,29 @@ function App() {
     let angka = parseInt(prompt("masukkan angka!"));
     // console.log(` Nilai Angka : ${angka}, tipe data angka : ${typeof angka}`);
     if (!isNaN(angka)) setCount(angka);
+    saveToStorage();
+  };
+
+  const isStorageExist = () => {
+    if (typeof Storage === undefined) return false;
+
+    return true;
+  };
+
+  const loadStorageData = () => {
+    if (!isStorageExist) alert("Your browser does not support local Storage");
+
+    let data = localStorage.getItem(STORAGE_KEY);
+    data = data === null ? 0 : data;
+    return data;
+  };
+
+  const [count, setCount] = useState(loadStorageData());
+
+  const saveToStorage = () => {
+    if (!isStorageExist) alert("Your browser does not support local Storage");
+
+    localStorage.setItem(STORAGE_KEY, count);
   };
 
   return (
