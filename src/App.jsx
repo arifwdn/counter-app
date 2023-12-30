@@ -1,11 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 function App() {
   const STORAGE_KEY = "counter_app";
   const handleCount = () => {
     setCount(parseInt(count) + 1);
-    saveToStorage();
   };
   const formCount = useRef();
 
@@ -13,7 +12,6 @@ function App() {
     let angka = parseInt(prompt("masukkan angka!"));
     // console.log(` Nilai Angka : ${angka}, tipe data angka : ${typeof angka}`);
     if (!isNaN(angka)) setCount(angka);
-    saveToStorage();
   };
 
   const isStorageExist = () => {
@@ -37,6 +35,10 @@ function App() {
 
     localStorage.setItem(STORAGE_KEY, count);
   };
+
+  useEffect(() => {
+    saveToStorage();
+  }, [count]);
 
   return (
     <div className="bg-orange-500 w-screen h-screen flex justify-center items-center">
